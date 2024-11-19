@@ -1,0 +1,126 @@
+/* Modal container styles */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure it appears on top of other elements */
+  }
+  
+  /* Modal content styles */
+  .modal-content {
+    background: #fff;
+    width: 90%; /* Mobile responsive width */
+    max-width: 400px; /* Max width for larger screens */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.3s ease-in-out; /* Smooth fade-in animation */
+    position: relative;
+  }
+  
+  /* Header styles */
+  .modal-content h2 {
+    margin: 0 0 20px;
+    font-size: 1.5rem;
+    color: #333;
+  }
+  
+  /* Form styles */
+  .modal-content form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  /* Label styles */
+  .modal-content label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+    color: #555;
+  }
+  
+  /* Input and select styles */
+  .modal-content input{
+    width: 90%;
+  }
+  .modal-content select {
+    width: 100%;
+}
+  .modal-content input,
+  .modal-content select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+  .button-row {
+    display: flex;
+    justify-content: flex-end; /* Align buttons to the right */
+    gap: 10px; /* Add space between buttons */
+    margin-top: 20px; /* Add some spacing above buttons */
+  }  
+  /* Button styles */
+  .modal-content button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  /* Save button */
+  .modal-content button[type="submit"] {
+    background: #007bff;
+    color: #fff;
+  }
+  
+  .modal-content button[type="submit"]:hover {
+    background: #0056b3;
+  }
+  
+  /* Close button */
+  .modal-content button[type="close"] {
+    background: #ddd;
+    color: #333;
+  }
+  
+  .modal-content button[type="close"]:hover {
+    background: #686464;
+  }
+  
+  /* Close icon styles */
+  .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #555;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  
+  .close:hover {
+    color: #000;
+  }
+  
+  /* Animation for modal */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  

@@ -1,0 +1,52 @@
+<div class="container">
+  <h2>To-Do List</h2>
+
+<div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+
+  <!-- Display list of to-dos -->
+  <table *ngIf="toDos.length > 0">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Priority</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let toDo of toDos">
+        <td>{{ toDo.name }}</td>
+        <td>{{ toDo.priority }}</td>
+        <td>{{ getStatusString(toDo.status) }}</td>
+        <td>
+          <button (click)="openEditModal(toDo)">Edit</button>
+          <button *ngIf="toDo.status === status.Completed" (click)="deleteToDo(toDo.name)">
+            Delete
+          </button>
+          <button *ngIf="toDo.status !== status.Completed" (click)="editToDo({ name: toDo.name, priority: toDo.priority, status: status.Completed })">
+            Mark as Completed
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Show message if no tasks are available -->
+  <div *ngIf="toDos.length === 0 && !errorMessage">
+    No tasks available. Add your first to-do!
+  </div>
+
+  <!-- Button at the Bottom -->
+  <div class="add-button-container">
+    <button class="add-todo-button" (click)="openAddModal()">Add New To-Do</button>
+  </div>
+  
+  <!-- Edit Modal -->
+<app-edit-todo
+  *ngIf="showModal"
+  [toDo]="selectedToDo"
+  (save)="saveToDoChanges($event)"
+  (close)="closeModal()">
+</app-edit-todo>

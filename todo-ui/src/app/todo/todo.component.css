@@ -1,0 +1,178 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f4f4f9;
+  color: #333;
+  line-height: 1.6;
+}
+
+h2 {
+  text-align: center;
+  color: #007bff;
+  margin-bottom: 20px;
+}
+
+/* Error Message */
+.error-message {
+  color: #d9534f;
+  text-align: center;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+/* Container */
+.container {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Styles */
+form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+form input,
+form select,
+form button {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+form button {
+  grid-column: span 2;
+  background: #007bff;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+form button:hover {
+  background: #0056b3;
+}
+
+/* To-Do List */
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+ul li {
+  background: #f9f9f9;
+  margin: 10px 0;
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+ul li strong {
+  font-weight: bold;
+}
+
+ul li button {
+  background: #d9534f;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+ul li button:hover {
+  background: #c9302c;
+}
+
+/* Table Styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table th,
+table td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+table th {
+  background: #007bff;
+  color: white;
+}
+
+table tbody tr:nth-child(even) {
+  background: #f9f9f9;
+}
+
+table tbody tr:hover {
+  background: #f1f1f1;
+}
+
+/* Table Buttons */
+table button {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  margin-right: 5px;
+  transition: background 0.3s ease;
+}
+
+table button:first-child {
+  background: #5cb85c;
+  color: white;
+}
+
+table button:first-child:hover {
+  background: #4cae4c;
+}
+
+table button:last-child {
+  background: #d9534f;
+  color: white;
+}
+
+table button:last-child:hover {
+  background: #c9302c;
+}
+.add-button-container {
+  display: flex;
+  justify-content: flex-end; /* Aligns the button to the right */
+  margin-bottom: 20px; /* Adds some spacing below the button */
+}
+
+.add-todo-button {
+  background-color: #007bff; /* Blue color */
+  color: white; /* White text */
+  border: none; /* Removes border */
+  padding: 10px 20px; /* Adjust padding for size */
+  font-size: 16px; /* Adjust font size */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s; /* Smooth color transition */
+}
+
+.add-todo-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+.add-todo-button:focus {
+  outline: none; /* Removes focus outline */
+}

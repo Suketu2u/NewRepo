@@ -1,0 +1,29 @@
+<div class="modal">
+    <div class="modal-content">
+      <span class="close" (click)="closeModal()">×</span>
+      <h2>{{ editMode ? 'Edit To-Do' : 'Add New To-Do' }}</h2>
+      <form (submit)="saveChanges()">
+        <div>
+          <label for="name">Name:</label>
+          <input [(ngModel)]="toDo.name" id="name" name="name" required />
+        </div>
+        <div>
+          <label for="priority">Priority:</label>
+          <input [(ngModel)]="toDo.priority" id="priority" name="priority" type="number" required />
+        </div>
+        <div>
+          <label for="status">Status:</label>
+          <select [(ngModel)]="toDo.status" id="status" name="status">
+            <option [ngValue]="0">Not Started</option>
+            <option [ngValue]="1">In Progress</option>
+            <option [ngValue]="2">Completed</option>
+          </select>
+        </div>
+        <div class="button-row">
+            <button type="submit">Save</button>
+            <button type="button" (click)="closeModal()">Close</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
