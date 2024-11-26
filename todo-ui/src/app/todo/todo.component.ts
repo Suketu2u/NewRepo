@@ -41,19 +41,11 @@ export class ToDoComponent implements OnInit {
   }
 
   addToDo(newToDo: ToDoItem): void {
-    if (!newToDo.name) {
-      this.errorMessage = 'Please provide a name for the todo.';
-      return;
-    }
-    // if(this.toDos.findIndex(t => t.name.toLowerCase() === newToDo.name.toLowerCase()) <= 0 ){
-    //   this.errorMessage = 'Provided name for the todo is already exist in list.';
-    //   return;
-    // }
+    
     this.toDoService.addToDo(newToDo).subscribe({
       next: (toDo) => {
         this.toDos.push(toDo);
-        this.toDos.sort((a,b)=>a.priority-b.priority).sort((a,b)=>b.status.valueOf() - a.status.valueOf());
-        //this.newToDo = {name: '', priority: 1, status: status.NotStarted }; // Reset the form
+        this.toDos.sort((a,b)=> a.priority - b.priority).sort((a,b)=> b.status.valueOf() - a.status.valueOf());
         this.errorMessage = '';
       },
       error: (error) => this.errorMessage =  error || 'Error adding todo.'
@@ -78,7 +70,7 @@ export class ToDoComponent implements OnInit {
         const index = this.toDos.findIndex(t => t.name.toLowerCase() === updatedToDo.name.toLowerCase());
         if (index !== -1) {
           this.toDos[index] = toDo;
-          this.toDos.sort((a,b)=>a.priority-b.priority).sort((a,b)=>b.status.valueOf() - a.status.valueOf());
+          this.toDos.sort((a,b)=> a.priority - b.priority).sort((a,b)=> b.status.valueOf() - a.status.valueOf());
         }
         this.errorMessage = '';
       },
@@ -111,11 +103,34 @@ export class ToDoComponent implements OnInit {
 
   // Save changes to the task
   saveToDoChanges(updatedToDo: ToDoItem) {
+    // Client-side validation
+    if (!updatedToDo.name) {
+      this.errorMessage = 'Name is required.';
+      return;
+    }
+    if (updatedToDo.priority <= 0) {
+      this.errorMessage = 'Priority must be greater than 0.';
+      return;
+    }
+    if (this.toDos.some(t => t.name.toLowerCase() === updatedToDo.name.toLowerCase() && !this.editMode)) {
+      this.errorMessage = 'A task with this name already exists.';
+      return;
+    }
+  
+    // Add or Edit logic
     if (this.editMode) {
       this.editToDo(updatedToDo);
     } else {
       this.addToDo(updatedToDo);
     }
-    this.closeModal();
+  
+    // Handle server-side errors
+    if (!this.errorMessage) {
+      this.errorMessage = '';
+      this.closeModal();
+    } else {
+      this.errorMessage = this.errorMessage;
+    }
   }
+  
 }

@@ -16,13 +16,30 @@ export class EditTodoComponent {
   @Output() save: EventEmitter<any> = new EventEmitter(); // Event to emit changes
   @Output() close: EventEmitter<void> = new EventEmitter(); // Event to close modal
 
-showModal: any;
+  showModal: any;
+  modalErrorMessage: string | undefined;
 
-  closeModal() {
+closeModal() {
     this.close.emit();
   }
 
-  saveChanges() {
+  saveChanges(): void {
+    // Reset previous errors
+    this.modalErrorMessage = '';
+  
+    // Client-side validation
+    if (!this.toDo.name) {
+      this.modalErrorMessage = 'Name is required.';
+      return;
+    }
+  
+    if (this.toDo.priority <= 0) {
+      this.modalErrorMessage = 'Priority must be greater than 0.';
+      return;
+    }
+      
+    // Emit the valid To-Do to parent
     this.save.emit(this.toDo);
+    this.closeModal();
   }
 }
