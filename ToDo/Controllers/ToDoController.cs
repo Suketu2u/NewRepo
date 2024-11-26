@@ -2,8 +2,8 @@ using Microsoft.AspNetCore.Mvc;
 using ToDo.Models;
 using ToDo.Service;
 
-namespace ToDo.Controllers
-{
+namespace ToDo.Controllers;
+
     [ApiController]
     [Route("api/[controller]")]
     public class ToDoController : ControllerBase
@@ -23,7 +23,7 @@ namespace ToDo.Controllers
             return Ok(toDos);
         }
 
-        [HttpPost]
+        [HttpPost("Add")]
         public IActionResult AddToDo([FromBody] ToDoItem newToDo)
         {
             try
@@ -32,6 +32,10 @@ namespace ToDo.Controllers
                 return Ok(toDo);
             }
             catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch(Exception ex)
             {
                 return BadRequest(ex.Message);
             }
@@ -73,4 +77,4 @@ namespace ToDo.Controllers
             }
         }
     }
-}
+
